@@ -1,0 +1,15 @@
+.rtl * {
+    direction: rtl;
+}
+
+#slider *{
+    direction: initial !important;
+}
+#slider {
+    direction: initial !important;
+}
+.rtl .dropdown-menu li a {
+    text-align: right !important;
+    padding: 6px 10px 6px 10px !important;
+    width: 200px;
+}
