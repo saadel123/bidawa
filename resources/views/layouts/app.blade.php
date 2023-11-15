@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/slide.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/style-rtl.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    <link href="{{asset('assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163666244-1"></script>
     <script>
@@ -58,6 +59,14 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{{ asset('js/slide.js') }}"></script>
+    <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const glightbox = GLightbox({
+                selector: '.glightbox'
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $("a.scrollLink").click(function(event) {

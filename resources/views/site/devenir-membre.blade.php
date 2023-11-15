@@ -9,177 +9,166 @@
         <div class="row bg-white" style="margin-top: 25px;padding-bottom: 80px;">
             <div class="col-md-12">
                 <div class="row color-secondary">
-
                     <div class="col-md-12">
-                        <!--   <p>
-                            Vous êtes intéressé par la participation à nos actions ? Envoyez nous votre demande d’adhésion avec une présentation de votre parcours et de vos motivations.
-                        </p>
-                        -->
-                        <h3 style="color:#00579e;font-weight:bold;"> Formulaire d'adhésion </h3>
+                        <h3 style="color:#00579e;font-weight:bold;"> {{__('partenariat.devenir-membre.title')}} </h3>
                         <p>
-                            Bienvenue sur notre plateforme d'adhésion. Nous vous remercions de l'intérêt que vous portez à
-                            BIDAWA+. Nous vous invitons à consulter les statuts et à remplir le formulaire ci-après.
+                            {{__('partenariat.devenir-membre.description')}}
                         </p>
                     </div>
                     <div class="col-md-12" style="margin-top:30px;">
+                        @if (session()->has('success'))
+                           <div class="alert alert-success">{{session()->get('success')}}</div> 
+                        @endif
                         <div class="row">
-                            <form class="form-inline" method="post" action="adhesion.php">
-                                <div class="col-md-12" style="margin-bottom:20px;">
-                                    <label>Civilité * : </label>
+                            <form class="form-inline" method="post" style="display: flex;flex-wrap: wrap;" action="{{route('store.member')}}">
+                                @csrf
+                                <div class="form-group mt-4 col-md-6" >
+                                    <label>{{__('partenariat.devenir-membre.civilite')}} * : </label>
                                     <div style="text-align:center;">
-                                        <label style="margin-right:60px;"><input type="radio" name="civilite"
-                                                style="width:20px!important;" value="" checked /> Madame</label>
-                                        <label><input type="radio" name="civilite" value="Monsieur"
-                                                style="width:20px!important;" /> Monsieur</label>
+                                        <label style="margin-right:60px;"><input type="radio" name="civilite" style="width:20px!important;" value="Mme" checked /> {{__('partenariat.devenir-membre.madame')}}</label>
+                                        <label><input type="radio" name="civilite" value="M" style="width:20px!important;" /> {{__('partenariat.devenir-membre.monsieur')}}</label>
+                                        @if ($errors->has('civilite'))
+                                            <div style="color: red">{{ $errors->first('civilite') }}</div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="" for="nom">Nom *</label>
-                                        <input style="width:100%;" type="text" class="form-control" id="nom"
-                                            name="nom" required>
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="" for="nom">{{__('partenariat.devenir-membre.nom')}} *</label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="nom" name="nom" required>
+                                        @if ($errors->has('nom'))
+                                            <div style="color: red">{{ $errors->first('nom') }}</div>
+                                        @endif
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
-                                        <label class="" for="prenom">Prénom *</label>
-                                        <input style="width:100%;" type="text" class="form-control" id="prenom"
-                                            name="prenom" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="" for="adresse">Adresse *</label>
-                                        <input style="width:100%;" type="text" class="form-control" id="adresse"
-                                            name="adresse" required>
-                                    </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
-                                        <label class="" for="quartier">Votre quartier *</label>
-                                        <input style="width:100%;" type="text" class="form-control" id="quartier"
-                                            name="quartier" required>
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
+                                        <label class="" for="prenom">{{__('partenariat.devenir-membre.prenom')}} *</label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="prenom" name="prenom" required>
+                                        @if ($errors->has('prenom'))
+                                            <div style="color: red">{{ $errors->first('prenom') }}</div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="" for="email">Email *</label>
-                                        <input style="width:100%;" type="text" class="form-control" id="email"
-                                            name="email" required>
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="" for="adresse">{{__('partenariat.devenir-membre.adresse')}} *</label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="adresse" name="adresse" required>
+                                        @if ($errors->has('adresse'))
+                                            <div style="color: red">{{ $errors->first('adresse') }}</div>
+                                        @endif
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
-                                        <label class="" for="tel">Tél *</label>
-                                        <input style="width:100%;" type="text" class="form-control" id="tel"
-                                            name="tel" required>
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
+                                        <label class="" for="quartier">{{__('partenariat.devenir-membre.votre-quartier')}} *</label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="quartier" name="quartier" required>
+                                        @if ($errors->has('quartier'))
+                                            <div style="color: red">{{ $errors->first('quartier') }}</div>
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="" for="siteWeb">Site web </label>
-                                        <input style="width:100%;" type="text" class="form-control" id="siteWeb"
-                                            name="siteWeb">
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="" for="email">{{__('partenariat.devenir-membre.email')}} *</label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="email" name="email" required>
+                                        @if ($errors->has('email'))
+                                            <div style="color: red">{{ $errors->first('email') }}</div>
+                                        @endif
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
+                                        <label class="" for="tel">{{__('partenariat.devenir-membre.tel')}} *</label>
+                                        <input style="width:100%;" type="number" class="form-control mt-2" id="tel" name="tele" required>
+                                        @if ($errors->has('tele'))
+                                            <div style="color: red">{{ $errors->first('tele') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="" for="siteWeb">{{__('partenariat.devenir-membre.site-web')}} </label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="siteWeb" name="siteweb">
+                                    </div>
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="" for="DomaineExpertisePrincipal">Domaine d'expertise
-                                            principal </label>
-                                        <input style="width:100%;" type="text" class="form-control"
-                                            id="DomaineExpertisePrincipal" name="DomaineExpertisePrincipal">
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="" for="DomaineExpertisePrincipal">{{__('partenariat.devenir-membre.domaine-dexpertise')}} </label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="DomaineExpertisePrincipal" name="domaine">
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
-                                        <label class="" for="AutreDomaineExpertise">Autre domaine d'expertise
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
+                                        <label class="" for="AutreDomaineExpertise">{{__('partenariat.devenir-membre.autre-domaine-dexpertise')}}
                                         </label>
-                                        <input style="width:100%;" type="text" class="form-control"
-                                            id="AutreDomaineExpertise" name="AutreDomaineExpertise">
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="AutreDomaineExpertise" name="autre_domaine">
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="" for="Biographie">Biographie résumée </label>
-                                        <textarea rows="6" style="width:100%;" type="text" class="form-control" id="Biographie"
-                                            name="Biographie">
-                        </textarea>
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="" for="Biographie">{{__('partenariat.devenir-membre.biographie-resumee')}} </label>
+                                        <textarea rows="6" style="width:100%;" type="text" class="form-control mt-2" id="Biographie" name="biographie"></textarea>
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="">Votre principaux centres d'intérêt pour Casablanca</label>
-                                        <input placeholder="1." style="width:100%;" type="text" class="form-control"
-                                            id="principauxCentresInteret1" name="principauxCentresInteret1">
-                                        <input placeholder="2." style="width:100%;" type="text" class="form-control"
-                                            id="principauxCentresInteret2" name="principauxCentresInteret2">
-                                        <input placeholder="3." style="width:100%;" type="text" class="form-control"
-                                            id="principauxCentresInteret3" name="principauxCentresInteret3">
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="">{{__('partenariat.devenir-membre.votre-principaux')}}</label>
+                                        <input placeholder="1." style="width:100%;" type="text" class="form-control mt-2" id="principauxCentresInteret1" name="principaux1">
+                                        <input placeholder="2." style="width:100%;" type="text" class="form-control mt-2" id="principauxCentresInteret2" name="principaux2">
+                                        <input placeholder="3." style="width:100%;" type="text" class="form-control mt-2" id="principauxCentresInteret3" name="principaux3">
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
-                                        <label class="">Votre suggestions et propositions</label>
-                                        <input placeholder="1." style="width:100%;" type="text" class="form-control"
-                                            id="suggestionspropositions1" name="suggestionspropositions1">
-                                        <input placeholder="2." style="width:100%;" type="text" class="form-control"
-                                            id="suggestionspropositions2" name="suggestionspropositions2">
-                                        <input placeholder="3." style="width:100%;" type="text" class="form-control"
-                                            id="suggestionspropositions3" name="suggestionspropositions3">
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
+                                        <label class="">{{__('partenariat.devenir-membre.votre-suggestions')}}</label>
+                                        <input placeholder="1." style="width:100%;" type="text" class="form-control mt-2" id="suggestionspropositions1" name="suggestions1">
+                                        <input placeholder="2." style="width:100%;" type="text" class="form-control mt-2" id="suggestionspropositions2" name="suggestions2">
+                                        <input placeholder="3." style="width:100%;" type="text" class="form-control mt-2" id="suggestionspropositions3" name="suggestions3">
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class=""> Etes vous déjà memebre d'une ou plusieurs
-                                            associations</label><br />
-                                        <label style="margin-right:50px;"><input style="width:15px;" type="radio"
-                                                class="form-control" value="Oui" name="dejaMembre"> Oui</label>
-                                        <label><input style="width:15px;" type="radio" class="form-control"
-                                                value="Non" name="dejaMembre"> Non</label>
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class=""> {{__('partenariat.devenir-membre.memebre-associations')}}</label><br />
+                                        <label style="margin-right:50px;"><input style="width:15px;" type="radio" class="mt-2" value="Oui" name="dejamemebre"> {{__('partenariat.devenir-membre.oui')}}</label>
+                                        <label><input style="width:15px;" type="radio" class="mt-2" value="Non" name="dejamemebre"> {{__('partenariat.devenir-membre.no')}}</label>
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="">Lesquelles :</label>
-                                        <input placeholder="1." style="width:100%;" type="text" class="form-control"
-                                            id="lesquelles1" name="lesquelles1">
-                                        <input placeholder="2." style="width:100%;" type="text" class="form-control"
-                                            id="lesquelles2" name="lesquelles2">
-                                        <input placeholder="3." style="width:100%;" type="text" class="form-control"
-                                            id="lesquelles3" name="lesquelles3">
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="">{{__('partenariat.devenir-membre.lesquelles')}} :</label>
+                                        <input placeholder="1." style="width:100%;" type="text" class="form-control mt-2" id="lesquelles1" name="lesquelles1">
+                                        <input placeholder="2." style="width:100%;" type="text" class="form-control mt-2" id="lesquelles2" name="lesquelles2">
+                                        <input placeholder="3." style="width:100%;" type="text" class="form-control mt-2" id="lesquelles3" name="lesquelles3">
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="" for="marraineParrain">Votre marraine ou votre parrain au
-                                            sein bidawa plus</b> </label>
-                                        <input style="width:100%;" type="text" class="form-control"
-                                            id="marraineParrain" name="marraineParrain">
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="" for="marraineParrain">{{__('partenariat.devenir-membre.votre-marraine-parrain')}}</b> </label>
+                                        <input style="width:100%;" type="text" class="form-control mt-2" id="marraineParrain" name="marraine">
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <div class="col-md-12 membre" style="">
-                                    <div class="form-group col-md-6" style=" padding-right:10px;">
-                                        <label class="">Montant de la cotisation annuelle souhaitée *</label><br />
-                                        <label><input style="width:15px;" type="radio" class="form-control"
-                                                value="1000 DH" name="cotisation" checked> 1000 dh</label><br />
-                                        <label><input style="width:15px;" type="radio" class="form-control"
-                                                value="5000 dh" name="cotisation"> 5000 dh</label><br />
-                                        <label><input style="width:15px;" type="radio" class="form-control"
-                                                value="Montant supérieur" name="cotisation"> Montant supérieur</label>
+                                <div class="col-md-6" style="">
+                                    <div class="form-group mt-4" style=" padding-right:10px;">
+                                        <label class="">{{__('partenariat.devenir-membre.montant-annuelle')}} *</label><br />
+                                        <label><input style="width:15px;" type="radio" class="mt-2" value="1000" name="cotisation" checked> 1000 {{__('partenariat.devenir-membre.dh')}}</label><br />
+                                        <label><input style="width:15px;" type="radio" class="mt-2" value="5000" name="cotisation"> 5000 {{__('partenariat.devenir-membre.dh')}}</label><br />
+                                        <label><input style="width:15px;" type="radio" class="mt-2" value="Montant supérieur" name="cotisation"> {{__('partenariat.devenir-membre.montant-superieur')}}</label>
                                     </div>
-                                    <div class="form-group col-md-6" style=" padding-left:10px;">
+                                    @if ($errors->has('cotisation'))
+                                        <div style="color: red">{{ $errors->first('cotisation') }}</div>
+                                    @endif
+                                    <div class="form-group mt-4" style=" padding-left:10px;">
                                         &nbsp;
                                     </div>
                                 </div>
-                                <button class="btn " name="adhesion"
-                                    style="width: 106px; margin-top: 35px;height: 40px;background:url(img/btn-valider.png) no-repeat;background-size:100% 100%;#66d81d;color:white;"
-                                    type="submit"></button>
+                                <button class="btn"  style="width: 106px; margin-top: 35px;height: 40px;background:url(img/btn-valider.png) no-repeat;background-size:100% 100%;#66d81d;color:white;" type="submit"></button>
                             </form>
                         </div>
                     </div>

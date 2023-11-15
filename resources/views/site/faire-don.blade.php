@@ -92,7 +92,7 @@
 
     <div class="row bg-white" style="margin-top: 25px;">
         <div class="col-md-12">
-            <h2 class="" style="margin-top: 30px;margin-bottom: 30px;"> Fair un don </h2>
+            <h2 class="" style="margin-top: 30px;margin-bottom: 30px;"> En cours </h2>
             <?php /*
             <h5>• Lorem Ipsum is simply dummy text of the printing and typesetting industry</h5>
             <h5 style="margin-bottom: 30px">• Lorem Ipsum is simply dummy text of the printing and typesetting industry</h5>

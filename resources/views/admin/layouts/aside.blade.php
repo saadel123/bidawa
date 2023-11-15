@@ -1,89 +1,50 @@
-
 <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link " href="index.html">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
+        <a class="nav-link " href="/admin/home">
+            <i class="bi bi-grid"></i>
+            <span>Home</span>
+        </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="components-alerts.html">
-            <i class="bi bi-circle"></i><span>Alerts</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-accordion.html">
-            <i class="bi bi-circle"></i><span>Accordion</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-badges.html">
-            <i class="bi bi-circle"></i><span>Badges</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-breadcrumbs.html">
-            <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-buttons.html">
-            <i class="bi bi-circle"></i><span>Buttons</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-cards.html">
-            <i class="bi bi-circle"></i><span>Cards</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-carousel.html">
-            <i class="bi bi-circle"></i><span>Carousel</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-list-group.html">
-            <i class="bi bi-circle"></i><span>List group</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-modal.html">
-            <i class="bi bi-circle"></i><span>Modal</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-tabs.html">
-            <i class="bi bi-circle"></i><span>Tabs</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-pagination.html">
-            <i class="bi bi-circle"></i><span>Pagination</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-progress.html">
-            <i class="bi bi-circle"></i><span>Progress</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-spinners.html">
-            <i class="bi bi-circle"></i><span>Spinners</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-tooltips.html">
-            <i class="bi bi-circle"></i><span>Tooltips</span>
-          </a>
-        </li>
-      </ul>
-    </li><!-- End Components Nav -->
+        <a class="nav-link  {{ request()->is('evenements*') ? 'active' : '' }}" data-bs-target="#evenements-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-menu-button-wide"></i><span>événements</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="evenements-nav" class="nav-content  {{ request()->is('evenements*') ? 'show' : '' }}"
+            data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('evenements.index') }}" class="{{ request()->is('evenements*') ? 'show' : '' }}">
+                    <i class="bi bi-circle"></i><span>List événements</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link  {{ request()->is('contacts*') ? 'active' : '' }}" data-bs-target="#contacts-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-menu-button-wide"></i><span>Contacts</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="contacts-nav" class="nav-content  {{ request()->is('contacts*') ? 'show' : '' }}"
+            data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('contacts.index') }}" class="{{ request()->is('contacts*') ? 'show' : '' }}">
+                    <i class="bi bi-circle"></i><span>List contacts</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link  {{ request()->is('membres*') ? 'active' : '' }}" data-bs-target="#membres-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-menu-button-wide"></i><span>Membres</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="membres-nav" class="nav-content  {{ request()->is('membres*') ? 'show' : '' }}"
+            data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ route('membres.index') }}" class="{{ request()->is('membres*') ? 'show' : '' }}">
+                    <i class="bi bi-circle"></i><span>List membres</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 
-  </ul>
+</ul>

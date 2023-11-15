@@ -8,26 +8,15 @@
         </div>
         <div class="row bg-white" style="margin-top: 25px;">
             <div class="col-md-12">
-                <h2 class="" style="margin-top: 30px;margin-bottom: 30px;">Notre organisation </h2>
+                <h2 class="" style="margin-top: 30px;margin-bottom: 30px;">{{__('qui-sommes-nous.notre-organisation.title')}} </h2>
                 <div class="row">
 
                     <div class="col-md-12">
-                        <p> <b>Bidawa+</b> est gérée par un Bureau Exécutif qui délibère et décide pour les questions
-                            relatives à la gestion de l’association. Il programme et propose les activités de l’association
-                            à l’Assemblée Générale et s’attache à la mise en œuvre d’actions. </p>
-                        <p> Les Membres du Bureau Exécutif sont élus par l’Assemblée Générale qui se réunit au moins une
-                            fois par an. </p>
-                        <p>Les ressources de l’Association proviennent </p>
-                        <ul>
-                            <li>des cotisations de ses membres.</li>
-                            <li>de la contribution de ses membres aux charges liées à ses activités.</li>
-                            <li>de la contribution de partenaires et sponsors.</li>
-                            <li>de dons.</li>
-                        </ul>
-
+                        {!!__('qui-sommes-nous.notre-organisation.description')!!}
                     </div>
                 </div>
             </div>
+            @if (session()->get('locale')=='fr' || session()->get('locale')=='')
             <div class="col-md-12">
                 <h3 class="color-secondary" style="margin-top: 30px;margin-bottom: 30px;font-weight: bold;"> Membres
                     Fondateurs de Bidawa + </h3>
@@ -53,6 +42,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 @endsection

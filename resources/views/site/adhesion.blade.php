@@ -25,72 +25,68 @@ include 'includes/top.php';
             
                 $message =
                     '
-            						<p><strong>Civilité : </strong> ' .
+                    <p><strong>Civilité : </strong> ' .
                     $_POST['civilite'] .
                     '</p>
-            						<p><strong>Nom et prénom : </strong> ' .
+                    <p><strong>Nom et prénom : </strong> ' .
                     $_POST['nom'] .
                     ' ' .
                     $_POST['prenom'] .
                     '</p>
-            						<p><strong>Tél : </strong> ' .
+                    <p><strong>Tél : </strong> ' .
                     $_POST['tel'] .
                     '</p>
-            						<p><strong>E-mail : </strong> ' .
+                    <p><strong>E-mail : </strong> ' .
                     $_POST['email'] .
                     '</p>
-            						<p><strong>Adresse : </strong> ' .
+                    <p><strong>Adresse : </strong> ' .
                     $_POST['adresse'] .
                     '</p>
-            						<p><strong>Quartier : </strong> ' .
+                    <p><strong>Quartier : </strong> ' .
                     $_POST['quartier'] .
                     '</p>
-            						<p><strong>Site Web : </strong> ' .
+                    <p><strong>Site Web : </strong> ' .
                     $_POST['siteWeb'] .
                     '</p>
-            						<p><strong>Domaine d\'expertise principal : </strong> ' .
+                    <p><strong>Domaine d\'expertise principal : </strong> ' .
                     $_POST['DomaineExpertisePrincipal'] .
                     '</p>
-            						<p><strong>Autre domaine d\'expertise  : </strong> ' .
+                    <p><strong>Autre domaine d\'expertise  : </strong> ' .
                     $_POST['AutreDomaineExpertise'] .
                     '</p>
-            						<p><strong>Biographie résumée : </strong> ' .
+                    <p><strong>Biographie résumée : </strong> ' .
                     $_POST['Biographie'] .
                     '</p>
-            						<p><strong>Quartier : </strong><br/>1- ' .
+                    <p><strong>Quartier : </strong><br/>1- ' .
                     $_POST['principauxCentresInteret1'] .
-                    '
-            					    <br/>2- ' .
+                    '<br/>2- ' .
                     $_POST['principauxCentresInteret2'] .
                     '<br/>3- ' .
                     $_POST['principauxCentresInteret3'] .
                     '</p>
-            						<p><strong>Votre suggestions et propositions :</strong><br/>1- ' .
+                    <p><strong>Votre suggestions et propositions :</strong><br/>1- ' .
                     $_POST['suggestionspropositions1'] .
-                    '
-            						<br/>2- ' .
+                    '<br/>2- ' .
                     $_POST['suggestionspropositions2'] .
                     '<br/>3- ' .
                     $_POST['suggestionspropositions3'] .
                     '</p>
-            						<p><strong>Etes vous déjà memebre d\'une ou plusieurs associations : </strong> ' .
+                    <p><strong>Etes vous déjà memebre d\'une ou plusieurs associations : </strong> ' .
                     $_POST['dejaMembre'] .
                     '</p>
-            						<p><strong>Lesquelles :</strong><br/>1- ' .
+                    <p><strong>Lesquelles :</strong><br/>1- ' .
                     $_POST['lesquelles1'] .
-                    '
-            						<br/>2- ' .
+                    '<br/>2- ' .
                     $_POST['lesquelles2'] .
                     '<br/>3- ' .
                     $_POST['lesquelles3'] .
                     '</p>
-            						<p><strong>Votre marraine ou votre parrain au sein bidawa plus : </strong> ' .
+                    <p><strong>Votre marraine ou votre parrain au sein bidawa plus : </strong> ' .
                     $_POST['marraineParrain'] .
                     '</p>
-            						<p><strong>Montant de la cotisation annuelle souhaitée : </strong> ' .
+                    <p><strong>Montant de la cotisation annuelle souhaitée : </strong> ' .
                     $_POST['cotisation'] .
-                    '</p>
-            						';
+                    '</p>';
                 $headers = 'MIME-Version: 1.0' . "\r\n";
                 $headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n";
                 $headers .= 'From:' . $from;

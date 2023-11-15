@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ChangerLangController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ChangerLangController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\EvenementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use App\Http\Controllers\IndexController;
 |
 */
 
-Route::get('/',[IndexController::class,'index']);
+Route::get('/', [IndexController::class, 'index']);
 Route::get('/notre-vision', function () {
     return view('site.notre-vision');
 });
@@ -70,13 +72,25 @@ Route::get('/contact', function () {
 Route::get('/media', function () {
     return view('site.media');
 });
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::get('/evenements', [EvenementController::class, 'SiteIndex']);
+Route::get('/evenements/{slug}', [EvenementController::class, 'show'])->name('evenement.details');
+
+Route::post('/contact/store', [ContactController::class, 'store'])->name('store.contact');
+Route::post('/member/store', [MemberController::class, 'store'])->name('store.member');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/changeLang',[ChangerLangController::class,'lang_change'])->name('changeLang');
+Route::get('/changeLang', [ChangerLangController::class, 'lang_change'])->name('changeLang');
 Route::get('/ar', [ChangerLangController::class, 'index']);
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Evenements
+    Route::resource('evenements', EvenementController::class);
+    // Contacts
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
+    // Membres
+    Route::get('/membres', [MemberController::class, 'index'])->name('membres.index');
+    Route::get('/membres/{id}', [MemberController::class, 'show'])->name('membres.show');
+});

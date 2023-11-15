@@ -8,7 +8,7 @@
             </div>
         </div>
 
-
+        @if (session()->get('locale')=='fr' || session()->get('locale')=='')
         <div class="row bg-white" style="margin-top: 25px;padding-bottom: 25px;">
             <div class="col-md-12" style="">
                 <h1 class=""
@@ -162,6 +162,8 @@
 
             </div>
         </div>
-
+        @else
+        <h2 class="" style="margin-top: 30px;margin-bottom: 30px;">En cours&nbsp;  </h2>
+        @endif
     </div>
 @endsection

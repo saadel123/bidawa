@@ -8,7 +8,7 @@
 	</div>
 	<div class="row bg-white" style="margin-top: 25px;">
 		<div class="col-md-12">
-			<h2 class="" style="margin-top: 30px;margin-bottom: 30px;"> Liens utiles </h2>
+			<h2 class="" style="margin-top: 30px;margin-bottom: 30px;"> {{__('dar-beida.liens-utiles.title')}} </h2>
 			<div class="row">
 				<div class="col-md-12">
                    <ul>                     
