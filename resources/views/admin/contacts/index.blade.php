@@ -19,11 +19,11 @@
 </style>
 @section('content')
     <div class="pagetitle">
-        <h1>événements</h1>
+        <h1>Contacts</h1>
         <nav style="display: flex;justify-content: space-between;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
-                <li class="breadcrumb-item active">événements</li>
+                <li class="breadcrumb-item active">Contacts</li>
             </ol>
             {{-- <a href="{{ route('contacts.create') }}" class="btn btn-primary">Ajouter</a> --}}
         </nav>
@@ -63,9 +63,9 @@
                                                 {{ $contact->choix }}
                                             </td>
                                             <td>
-                                                <a class="edit" href="{{ route('contacts.show', $contact->id) }}"
-                                                    style="color:rgb(125, 125, 5)"><i
-                                                        class="material-icons"></i>Afficher</a>
+                                                <a class="edit" href="{{ route('contacts.show', $contact->id) }}" style="color:rgb(125, 125, 5)">
+                                                    <i class="material-icons"></i>Afficher
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center">
+    <a href="{{route('home')}}" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">Bidawa plus</span>
     </a>
@@ -22,16 +22,17 @@
                 </li>
                 <li>
                     <a class="dropdown-item text-center" href="{{ url('/') }}">
-                        <i class="ri-arrow-go-back-fill"></i> la page d'accueil</a>
+                        <i class="ri-arrow-go-back-fill"></i> la page d'accueil
+                    </a>
                 </li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
                 <li>
                     @if (Auth::check())
-                        <a class="dropdown-item text-center" href="{{ url('/') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="bi bi-box-arrow-right"></i> Se déconnecter</a>
+                        <a class="dropdown-item text-center" href="{{ url('/') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bi bi-box-arrow-right"></i> Se déconnecter
+                        </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
@@ -39,6 +40,5 @@
                 </li>
             </ul>
         </li>
-
     </ul>
 </nav>

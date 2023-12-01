@@ -1,15 +1,14 @@
 @extends('layouts.app')
+@section('title',"Bidawa+: Devenir membre")
+@section('description',"Bienvenue sur notre plateforme d'adhésion. Nous vous remercions de l'intérêt que vous portez à BIDAWA+. Nous vous invitons à consulter les statuts et à remplir le formulaire ci-après.")
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="padding: 0px; margin: 0px;">
-                <img src="img/slide-bidawa-4.png?<?php echo date('YmdHis'); ?>" width="100%" />
-            </div>
-        </div>
+        @include('layouts.slidepage')
         <div class="row bg-white" style="margin-top: 25px;padding-bottom: 80px;">
             <div class="col-md-12">
                 <div class="row color-secondary">
                     <div class="col-md-12">
+                        <h1 class="invisible">Devenir membre</h1>
                         <h3 style="color:#00579e;font-weight:bold;"> {{__('partenariat.devenir-membre.title')}} </h3>
                         <p>
                             {{__('partenariat.devenir-membre.description')}}
@@ -17,7 +16,7 @@
                     </div>
                     <div class="col-md-12" style="margin-top:30px;">
                         @if (session()->has('success'))
-                           <div class="alert alert-success">{{session()->get('success')}}</div> 
+                           <div class="alert alert-success">{{session()->get('success')}}</div>
                         @endif
                         <div class="row">
                             <form class="form-inline" method="post" style="display: flex;flex-wrap: wrap;" action="{{route('store.member')}}">

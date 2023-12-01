@@ -9,6 +9,9 @@ body {
     font-size: large;
     line-height: 32px;
 }
+.dropdown-item.active, .dropdown-item:active  {
+    background-color: unset!important;
+  }
 
 .membre-detail {
     width: 100%;
@@ -249,13 +252,13 @@ p {
     }
 }
 
-/* 
+/*
 .navbar .navbar-nav {
     display: inline-block!important;
     float: none!important;
     vertical-align: top!important;
   }
-  
+
   .navbar .navbar-collapse {
     text-align: center!important;
   } */

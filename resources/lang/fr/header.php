@@ -21,4 +21,5 @@ return [
     'partenariats-associatifs'=>'Partenariats associatifs',
     'contact'=>'Contactez nous',
     'media'=>'Media',
+    'activite'=>'Nos Activités',
 ];

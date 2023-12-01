@@ -1,11 +1,10 @@
 @extends("layouts.app")
+@section('title','Notre Vision')
+@section('description',"Découvrez une Casablanca en plein essor, conciliant croissance démographique et urbanistique avec un cadre de vie convivial pour les Bidawa. Une ville équilibrée, alliant dimensions matérielles, économiques et humaines. Notre mission : faire de Casablanca une ville où il fait bon vivre, décente, paisible, stimulante et épanouissante, répondant aux exigences sociales, sécuritaires et culturelles.")
+
 @section("content")
 <div class="container">
-    <div class="row">
-        <div class="col-md-12" style="padding: 0px; margin: 0px;">
-            <img src="img/slide bidawa.png?<?php echo date('YmdHis'); ?>" width="100%" />
-        </div>
-    </div>
+    @include('layouts.slidepage')
     <div class="row bg-white" style="margin-top: 25px;">
         <div class="col-md-12">
             <h2 class="" style="margin-top: 30px;margin-bottom: 30px;"> {{__('qui-sommes-nous.notre-vision.title')}} </h2>

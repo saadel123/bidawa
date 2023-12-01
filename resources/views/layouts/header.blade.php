@@ -12,7 +12,8 @@
                             <a href="https://www.facebook.com/Bidawa--100287504970845/?modal=admin_todo_tour">
                                 <img class="suivez-nous-img" src="{{ asset('img/fb-icon.png') }}" /></a>
                             <a href="#"><img class="suivez-nous-img" src="{{ asset('img/yt-icon.png') }}" /></a>
-                            <span style="border-left:2px solid rgb(128, 128, 128);margin-left:20px;margin-right:20px;"></span>
+                            <span
+                                style="border-left:2px solid rgb(128, 128, 128);margin-left:20px;margin-right:20px;"></span>
                             {{-- {{ app()->getLocale() }} --}}
                             @if (session()->get('locale') == 'fr' || session()->get('locale') == null)
                                 <a style="color: black" href="{{ route('changeLang', ['lang' => 'ar']) }}"
@@ -39,53 +40,63 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">{{__('header.accueil')}}</a>
+                    <a class="nav-link" href="/">{{ __('header.accueil') }}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        {{__('header.qui-sommes-nous')}}
+                        {{ __('header.qui-sommes-nous') }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <li><a class="dropdown-item" href="/notre-vision">{{__('header.notre-vision')}}</a></li>
-                        <li><a class="dropdown-item" href="/notre-mission">{{__('header.notre-mission')}}</a></li>
-                        <li><a class="dropdown-item" href="/nos-objectifs">{{__('header.nos-objectifs')}}</a></li>
-                        <li><a class="dropdown-item" href="/nos-valeurs">{{__('header.nos-valeurs')}}</a></li>
-                        <li><a class="dropdown-item" href="/notre-organisation">{{__('header.notre-organisation')}}</a></li>
+                        <li><a class="dropdown-item" href="/notre-vision">{{ __('header.notre-vision') }}</a></li>
+                        <li><a class="dropdown-item" href="/notre-mission">{{ __('header.notre-mission') }}</a></li>
+                        <li><a class="dropdown-item" href="/nos-objectifs">{{ __('header.nos-objectifs') }}</a></li>
+                        <li><a class="dropdown-item" href="/nos-valeurs">{{ __('header.nos-valeurs') }}</a></li>
+                        <li><a class="dropdown-item"
+                                href="/notre-organisation">{{ __('header.notre-organisation') }}</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/activites">{{ __('header.activite') }}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        {{__('header.dar-beida')}}
+                        {{ __('header.dar-beida') }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                        <li><a class="dropdown-item" href="/importance-enjeux">{{__('header.importance-enjeux')}}</a></li>
-                        <li><a class="dropdown-item" href="/patrimoine">{{__('header.patrimoine')}}</a></li>
-                        <li><a class="dropdown-item" href="/gouvernance-ville">{{__('header.gouvernance-ville')}}</a></li>
-                        <li><a class="dropdown-item" href="/carte-Interactive">{{__('header.carte-Interactive')}}</a></li>
-                        <li><a class="dropdown-item" href="/galerie-photos">{{__('header.galerie-photos')}}</a></li>
-                        <li><a class="dropdown-item" href="/liens-utiles">{{__('header.liens-utiles')}}</a></li>
+                        <li><a class="dropdown-item" href="/importance-enjeux">{{ __('header.importance-enjeux') }}</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/patrimoine">{{ __('header.patrimoine') }}</a></li>
+                        <li><a class="dropdown-item" href="/gouvernance-ville">{{ __('header.gouvernance-ville') }}</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/carte-Interactive">{{ __('header.carte-Interactive') }}</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/galerie-photos">{{ __('header.galerie-photos') }}</a></li>
+                        <li><a class="dropdown-item" href="/liens-utiles">{{ __('header.liens-utiles') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        {{__('header.partenariat')}}
+                        {{ __('header.partenariat') }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                        <li><a class="dropdown-item" href="/faire-don">{{__('header.faire-don')}}</a></li>
-                        <li><a class="dropdown-item" href="/devenir-membre">{{__('header.devenir-membre')}}</a></li>
-                        <li><a class="dropdown-item" href="/soutenir-association">{{__('header.soutenir-association')}}</a></li>
-                        <li><a class="dropdown-item" href="/partenariats-associatifs">{{__('header.partenariats-associatifs')}}</a></li>
+                        <li><a class="dropdown-item" href="/faire-don">{{ __('header.faire-don') }}</a></li>
+                        <li><a class="dropdown-item" href="/devenir-membre">{{ __('header.devenir-membre') }}</a></li>
+                        <li><a class="dropdown-item"
+                                href="/soutenir-association">{{ __('header.soutenir-association') }}</a></li>
+                        <li><a class="dropdown-item"
+                                href="/partenariats-associatifs">{{ __('header.partenariats-associatifs') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">{{__('header.contact')}}</a>
+                    <a class="nav-link" href="/contact">{{ __('header.contact') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/media">{{__('header.media')}}</a>
+                    <a class="nav-link" href="/media">{{ __('header.media') }}</a>
                 </li>
+
             </ul>
         </div>
     </div>

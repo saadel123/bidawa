@@ -26,7 +26,7 @@
         <nav style="display: flex;justify-content: space-between;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
-                <li class="breadcrumb-item active">membres</li>
+                <li class="breadcrumb-item active">Membres</li>
             </ol>
             {{-- <a href="{{ route('membres.create') }}" class="btn btn-primary">Ajouter</a> --}}
         </nav>

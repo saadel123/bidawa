@@ -16,8 +16,8 @@
                     <a href="#"><img src="{{asset("img/yt-icon.png")}}" style="height:  26px;" /></a>
                 </div>
                 <div class="info-footer">
-                    <div><img src="{{asset("img/footer-icon-1.png")}}"/> contact@bidawaplus.ma
-                    </div>
+                    <a href="/contact"><img src="{{asset("img/footer-icon-1.png")}}"/> contact@bidawaplus.ma
+                    </a>
 
 
                     <div><img src="{{asset("img/footer-icon-2.png")}}" /> 95, Bd Mohammed V
@@ -26,7 +26,7 @@
                     <div>
                         {{-- <a href="devenir-membre.php"><img src="{{asset("img/devenir-membre.png")}}"/>
                         </a> --}}
-                        <a style="color: #b11cff" href="devenir-membre.php">
+                        <a style="color: #b11cff" href="/devenir-membre">
                             <i style="font-size: 20px;" class="bi bi-person-add"></i> Devenir Membre
                         </a>
                     </div>
@@ -35,9 +35,9 @@
             </div>
             <div class="col-md-2 col-xs-12">
                 <ul class="menu-footer" style="display:none;">
-                    <li><a href="faire-don.php"> Partenariats</a></li>
-                    <li><a href="contact.php"> Contactez nous</a></li>
-                    <li><a href="media.php"> Media</a></li>
+                    <li><a href="/devenir-membre"> Partenariats</a></li>
+                    <li><a href="/contact"> Contactez nous</a></li>
+                    <li><a href="/media"> Media</a></li>
                 </ul>
             </div>
         </div>

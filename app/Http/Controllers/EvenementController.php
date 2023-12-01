@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Evenement;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-
+use Artesaos\SEOTools\Facades\SEOTools;
 class EvenementController extends Controller
 {
     /**
@@ -80,7 +80,14 @@ class EvenementController extends Controller
      */
     public function show($slug)
     {
-        return view('site.evenement-details',['evenement'=>Evenement::where('slug',$slug)->with('media')->first()]);
+        $evenement=Evenement::where('slug',$slug)->with('media')->first();
+        SEOTools::setTitle($evenement->title);
+        SEOTools::setDescription($evenement->description);
+        SEOTools::opengraph()->setUrl(env('APP_URL'));
+        SEOTools::setCanonical(env('APP_URL').'/'.$evenement->slug);
+        SEOTools::opengraph()->addProperty('type', 'activite');
+        SEOTools::jsonLd()->addImage($evenement->image);
+        return view('site.evenement-details',['evenement'=>$evenement]);
     }
 
     /**

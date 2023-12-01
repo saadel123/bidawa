@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Mail\mailer;
 use App\Models\Contact;
+use App\Models\Evenement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
+    public function SiteIndex()
+    {
+        return view('site.contact', ['evenement' => Evenement::select('title')->Where('date','>',now()->endOfDay())->get()]);
+    }
     public function index()
     {
         return view('admin.contacts.index', ['contacts' => Contact::orderBy('created_at', 'desc')->get()]);
@@ -35,7 +40,7 @@ class ContactController extends Controller
 
         try {
             $mailer = new mailer($details);
-            Mail::to('s.elghanemy@directinvest.ma')->send($mailer);
+            Mail::to('a.ezzyraouy@directinvest.ma')->send($mailer);
             $input = $request->all();
             $mail = new Contact();
             $mail->create($input);

@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title','Contact')
+@section('description','Contactez Bidawa+ pour un Casablanca meilleur : service public, mobilité, urbanisme, hygiène, sécurité, environnement. Agissons ensemble')
 @section('content')
     <div class="container">
         <div class="row">
@@ -8,7 +10,7 @@
         </div>
         <div class="row bg-bidawa color-white" id="contact" style="margin-top: 25px;padding: 10px;">
             <div class="col-md-12">
-                <h2 class="" style="margin-top: 30px;margin-bottom: 30px;color: white!important;">
+                <h1 class="" style="margin-top: 30px;margin-bottom: 30px;color: white!important;">
                     {{ __('contact.title') }} </h2>
                 <div class="row ">
                     <div class="col-md-12">
@@ -46,6 +48,9 @@
                                     <div class="form-group ">
                                         <span class="text-white" style="font-size: 14px;">&nbsp;</span>
                                         <select name="choix" class="form-control form-rounded color-secondary select-contact" required>
+                                            @foreach ($evenement as $item)
+                                            <option>{{ $item->title }}</option>
+                                            @endforeach
                                             <option>{{ __('contact.select.option1') }}</option>
                                             <option>{{ __('contact.select.option2') }}</option>
                                             <option>{{ __('contact.select.option3') }}</option>

@@ -6,26 +6,36 @@
 
 <div class="col-12">
     <label for="description" class="form-label">Description</label>
-    <input type="text" name="description" class="form-control" id="description" required
-        value="{{ old('description', $evenement->description ?? '') }}">
+    <textarea name="description" class="form-control" id="description" required >  {{ old('description', $evenement->description ?? '') }}</textarea>
+</div>
+<div class="col-12">
+    <label for="lieu" class="form-label">Lieu</label>
+    <input type="text" name="lieu" class="form-control" id="lieu" 
+        value="{{ old('lieu', $evenement->lieu ?? '') }}">
 </div>
 <div class="col-12">
     <label for="date" class="form-label">Date</label>
-    <input type="date" name="date" class="form-control" id="date" required
-        value="{{ old('date', $evenement->date ?? '') }}">
+    <input type="date" name="date" class="form-control" id="date"  value="{{ old('date', $evenement->date ?? '') }}">
 </div>
 
 <div class="col-12">
-    <label for="image" class="form-label">Image</label>
+    <label for="image" class="form-label">Affiche</label>
     <input type="file" name="image" class="form-control" id="image"
         value="{{ old('image', $evenement->image ?? '') }}">
 </div>
 <div class="col-12">
-    <label for="affiche" class="form-label">Affiche</label>
+    <label for="affiche" class="form-label">Slide</label>
     <input type="file" name="affiche" class="form-control" id="affiche"
         value="{{ old('affiche', $evenement->affiche ?? '') }}">
 </div>
 
+<div class="col-12">
+    <label for="media" class="form-label">Images</label>
+    <input type="file" id="media" multiple name="media[]" class="form-control">
+    @if ($errors->has('media'))
+        <span class="text-danger text-left">{{ $errors->first('media') }}</span>
+    @endif
+</div>
 <div class="col-12">
     <label for="inputMovie" class="form-label">videos</label>
     <input type="text" name="videos" class=" tagsinput" placeholder="Saisissez les URL séparées par une virgule"
@@ -36,13 +46,6 @@
     @endif
 </div>
 
-<div class="col-12">
-    <label for="media" class="form-label">Media</label>
-    <input type="file" id="media" multiple name="media[]" class="form-control">
-    @if ($errors->has('media'))
-        <span class="text-danger text-left">{{ $errors->first('media') }}</span>
-    @endif
-</div>
 
 <style>
     .bootstrap-tagsinput .tag {

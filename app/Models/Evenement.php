@@ -11,7 +11,7 @@ class Evenement extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        'slug', 'title', 'description', 'image', 'affiche', 'videos', 'date'
+        'slug', 'title', 'description', 'lieu', 'image', 'affiche', 'videos', 'date'
     ];
     public function media()
     {

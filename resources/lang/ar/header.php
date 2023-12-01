@@ -20,5 +20,6 @@ return [
     'soutenir-association'=>'مساندة الجمعية',
     'partenariats-associatifs'=>'الشراكات الجمعوية',
     'contact'=>'اتصل بنا',
-    'media'=>'الوسائط',
+    'media'=>'النشرات الصحفية',
+    'activite'=>'أنشطتنا',
 ];
