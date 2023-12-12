@@ -6,6 +6,8 @@ use App\Models\Evenement;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Normalizer;
+
 class EvenementController extends Controller
 {
     /**
@@ -15,13 +17,13 @@ class EvenementController extends Controller
      */
     public function SiteIndex()
     {
-        $evenements = Evenement::Where('date','<=',now()->endOfDay())->orderBy('created_at','desc')->get();
-        $prochaine_evenment = Evenement::Where('date','>',now()->endOfDay())->get();
-        return view('site.evenements',['evenements'=>$evenements,'prochaine_evenment'=>$prochaine_evenment]);
+        $evenements = Evenement::Where('date', '<=', now()->endOfDay())->orderBy('created_at', 'desc')->get();
+        $prochaine_evenment = Evenement::Where('date', '>', now()->endOfDay())->get();
+        return view('site.evenements', ['evenements' => $evenements, 'prochaine_evenment' => $prochaine_evenment]);
     }
     public function index()
     {
-        return view('admin.evenements.index',['evenements'=>Evenement::orderBy('created_at','desc')->get()]);
+        return view('admin.evenements.index', ['evenements' => Evenement::orderBy('created_at', 'desc')->get()]);
     }
 
     /**
@@ -42,25 +44,36 @@ class EvenementController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $count=0;
-        $slug = Str::slug($request->input('title'), '-', 'en');
-        while (Evenement::where('slug', $request->input('title'))->exists()) {
+        $count = 0;
+        $count1 = 0;
+
+        $slug_fr = Str::slug($request->input('title_fr'), '-', 'en');
+        while (Evenement::where('slug_fr', $request->input('title'))->exists()) {
             $count++;
-            $slug = Str::slug($request->input('title'), '-', 'en') . '-' . $count;
+            $slug_fr = Str::slug($request->input('title_fr'), '-', 'en') . '-' . $count;
         }
-        $input['slug']=$slug;
-        if($request->hasFile('image')){
-            $input['image']=$request->image->store('images/evenements', 'public');
+        $input['slug_fr'] = $slug_fr;
+
+        $normalizedArabic = Normalizer::normalize($request->title_ar, Normalizer::FORM_KD);
+        $slug_ar = str_replace(' ', '-', $normalizedArabic);
+        while (Evenement::where('slug_ar', $request->input('title_ar'))->exists()) {
+            $count1++;
+            $slug_ar = str_replace(' ', '-', $normalizedArabic) . '-' . $count;
         }
-        if($request->hasFile('affiche')){
-            $input['affiche']=$request->affiche->store('images/evenements', 'public');
+        $input['slug_ar'] = $slug_ar;
+
+        if ($request->hasFile('image')) {
+            $input['image'] = $request->image->store('images/evenements', 'public');
+        }
+        if ($request->hasFile('affiche')) {
+            $input['affiche'] = $request->affiche->store('images/evenements', 'public');
         }
         if ($request->has('videos')) {
             $input['videos'] = json_encode($input['videos'], JSON_UNESCAPED_SLASHES);
         }
         $evenement = Evenement::create($input);
         if ($evenement_media = $request->file('media')) {
-            foreach ($evenement_media as  $media) {
+            foreach ($evenement_media as $media) {
                 $url = $media->store('media/evenement', 'public');
                 $type = $media->getClientOriginalExtension();
                 $evenement->media()->create([
@@ -80,14 +93,34 @@ class EvenementController extends Controller
      */
     public function show($slug)
     {
-        $evenement=Evenement::where('slug',$slug)->with('media')->first();
-        SEOTools::setTitle($evenement->title);
-        SEOTools::setDescription($evenement->description);
-        SEOTools::opengraph()->setUrl(env('APP_URL'));
-        SEOTools::setCanonical(env('APP_URL').'/'.$evenement->slug);
-        SEOTools::opengraph()->addProperty('type', 'activite');
-        SEOTools::jsonLd()->addImage($evenement->image);
-        return view('site.evenement-details',['evenement'=>$evenement]);
+        $evenement = Evenement::where('slug_fr', $slug)->with('media')->first();
+
+        if (!$evenement) {
+            $evenement = Evenement::where("slug_ar", $slug)
+                ->first();
+        }
+        SEOTools::setTitle(Str::limit($evenement->{'title_' . app()->getLocale()}, 60, ''));
+        SEOTools::setDescription(Str::limit($evenement->{'description_' . app()->getLocale()}, 150, '...'));
+        SEOTools::metatags()->addMeta('article:published_time', $evenement->created_at->toW3CString(), 'property');
+        SEOTools::metatags()->addMeta('article:section', 'news');
+        // SEOTools::metatags()->addKeyword([$evenement->meta_keywords]);
+
+        // Set Open Graph metadata
+        SEOTools::opengraph()->setTitle(Str::limit($evenement->{'title_' . app()->getLocale()}, 60, ''));
+        SEOTools::opengraph()->setDescription(Str::limit($evenement->{'description_' . app()->getLocale()}, 150, '...'));
+        SEOTools::opengraph()->setUrl(config('app.url'));
+        SEOTools::opengraph()->setType('article');
+        SEOTools::opengraph()->setArticle([
+            'published_time' => $evenement->created_at,
+            'modified_time' => $evenement->updated_at,
+        ]);
+        SEOTools::opengraph()->addImage(asset('storage/' . $evenement->image), ['height' => 300, 'width' => 300]);
+
+        // Set JSON-LD metadata
+        SEOTools::jsonLd()->setTitle(Str::limit($evenement->{'title_' . app()->getLocale()}, 60, ''));
+        SEOTools::jsonLd()->setDescription(Str::limit($evenement->{'description_' . app()->getLocale()}, 150, '...'));
+        SEOTools::jsonLd()->setType('Article');
+        return view('site.evenement-details', ['evenement' => $evenement]);
     }
 
     /**
@@ -98,7 +131,7 @@ class EvenementController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.evenements.edit',['evenement'=>Evenement::findOrFail($id)]);
+        return view('admin.evenements.edit', ['evenement' => Evenement::findOrFail($id)]);
     }
 
     /**
@@ -107,21 +140,31 @@ class EvenementController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $input = $request->all();
-        $count=0;
-        $slug = Str::slug($request->input('title'), '-', 'en');
-        while (Evenement::where('slug', $request->input('title'))->exists()) {
+        $count = 0;
+        $count1 = 0;
+        $slug_fr = Str::slug($request->input('title_fr'), '-', 'en');
+        while (Evenement::where('slug_fr', $request->input('title'))->exists()) {
             $count++;
-            $slug = Str::slug($request->input('title'), '-', 'en') . '-' . $count;
+            $slug_fr = Str::slug($request->input('title_fr'), '-', 'en') . '-' . $count;
         }
-        $input['slug']=$slug;
-        if($request->hasFile('image')){
-            $input['image']=$request->image->store('images/evenements', 'public');
+        $input['slug_fr'] = $slug_fr;
+
+        $normalizedArabic = Normalizer::normalize($request->title_ar, Normalizer::FORM_KD);
+        $slug_ar = str_replace(' ', '-', $normalizedArabic);
+        while (Evenement::where('slug_ar', $request->input('title_ar'))->exists()) {
+            $count1++;
+            $slug_ar = str_replace(' ', '-', $normalizedArabic) . '-' . $count;
         }
-        if($request->hasFile('affiche')){
-            $input['affiche']=$request->affiche->store('images/evenements', 'public');
+        $input['slug_ar'] = $slug_ar;
+
+        if ($request->hasFile('image')) {
+            $input['image'] = $request->image->store('images/evenements', 'public');
+        }
+        if ($request->hasFile('affiche')) {
+            $input['affiche'] = $request->affiche->store('images/evenements', 'public');
         }
         if ($request->has('videos')) {
             $input['videos'] = json_encode($input['videos'], JSON_UNESCAPED_SLASHES);
@@ -129,7 +172,7 @@ class EvenementController extends Controller
         $evenement = Evenement::findOrFail($id);
         $evenement->update($input);
         if ($evenement_media = $request->file('media')) {
-            foreach ($evenement_media as  $media) {
+            foreach ($evenement_media as $media) {
                 $url = $media->store('media/evenement', 'public');
                 $type = $media->getClientOriginalExtension();
                 $evenement->media()->create([

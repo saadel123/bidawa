@@ -4,5 +4,5 @@ return [
     'photo'=>'Photos',
     'video'=>'Videos',
     'prochaine-activite'=>'Prochaine Activités',
-    'activite-precedent'=>'Activités Précédent',
+    'activite-precedent'=>'Découvrez Nos Événements!',
 ];

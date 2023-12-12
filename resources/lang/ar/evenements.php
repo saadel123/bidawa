@@ -2,5 +2,5 @@
     'photo' => 'الصور',
     'video' => 'الفيديوهات',
     'prochaine-activite' => 'الأنشطة القادمة',
-    'activite-precedent' => 'الأنشطة السابقة',
+    'activite-precedent' => 'اكتشف أحداثنا!'
 ];

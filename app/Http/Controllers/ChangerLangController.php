@@ -18,6 +18,6 @@ class ChangerLangController extends Controller
     {
         App::setLocale($request->lang);
         session()->put('locale', $request->lang);
-        return redirect()->back();
+        return redirect('/');
     }
 }

@@ -53,8 +53,8 @@
                                     @foreach ($evenements as $evenement)
                                         <tr>
                                             <th scope="row">{{ $evenement->id }}</th>
-                                            <td>{{ $evenement->title }}</td>
-                                            <td>{{ $evenement->description }}</td>
+                                            <td>{{ $evenement->title_fr }}</td>
+                                            <td>{{ $evenement->description_fr }}</td>
                                             <td>
                                                 {{ $evenement->date }}
                                             </td>

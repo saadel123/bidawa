@@ -26,7 +26,7 @@
             <h2>{{__('evenements.prochaine-activite')}}</h2>
             @foreach ($prochaine_evenment as $item)
                 <div class="col-md-4 col-6">
-                    <a href="activite/{{ $item->slug }}" class="m-2 cont-img">
+                    <a href="activite/{{ $item->{'slug_'.app()->getLocale()} }}" class="m-2 cont-img">
                         <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid" alt="#">
                     </a>
                 </div>
@@ -37,7 +37,7 @@
             <h2>{{__('evenements.activite-precedent')}}</h2>
             @foreach ($evenements as $item)
                 <div class="col-md-4 col-6 mt-4">
-                    <a href="activite/{{ $item->slug }}" class="m-2 cont-img">
+                    <a href="activite/{{ $item->{'slug_'.app()->getLocale()} }}" class="m-2 cont-img">
                         <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid" alt="#">
                     </a>
                 </div>

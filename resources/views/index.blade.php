@@ -2,42 +2,34 @@
 @section('title', 'Vivre et Agir à Casablanca : Bidawa+ Association pour une Ville Meilleure')
 @section('description', 'Casablanca, Dar Beida : Ville généreuse et accueillante. Bidawa+ valorise la diversité pour un Casablanca meilleur. Rejoignez-nous pour l\'améliorer!')
 @section('content')
-    <style>
-        button.control_prev,
-        button.control_next {
-            border: unset !important;
-            background: transparent;
-            color: #a1a1a1;
-            font-size: 28px;
-        }
 
-        .bi-chevron-right,
-        .bi-chevron-left {
-            color: #a1a1a1;
-            font-size: 28px;
-        }
-    </style>
     <div class="container">
-        <div class="row" style="padding:0px;">
-            <!-- slide lide-bidawa.png -->
-            <div class="slider" id="slider" data-width="100">
-                <h1 style="display: none">Vivre et Agir à Casablanca : Bidawa+ Association pour une Ville Meilleure</h1>
-                <button class="control_next"><span class="bi bi-chevron-right" aria-hidden="true"></span></button>
-                <button class="control_prev"><span class="bi bi-chevron-left" aria-hidden="true"></span></button>
-
-                <ul>
-                    @foreach ($slides as $item)
-                        <li class="">
-                            <div class="slide" style="background: url({{ asset('storage/' . $item->image) }}) no-repeat;">
-                                <div class="shadow">
-
-                                </div>
-                            </div>
-                        </li>
+        <div class="row">
+            <div id="carouselExampleControls" class="carousel slide d-flex align-items-center" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach ($slides as $key => $item)
+                        @php
+                            $activeClass = $key == 0 ? 'active' : '';
+                        @endphp
+                        <a href="{{$item->url}}" class="carousel-item {{ $activeClass }}">
+                            <img src="{{asset('storage/'.$item->image)}}" class="d-block w-100" alt="...">
+                        </a>
                     @endforeach
-                </ul>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"  style="background-color: #80808047;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"  style="background-color: #80808047;" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
+     <h1 style="display: none">Vivre et Agir à Casablanca : Bidawa+ Association pour une Ville Meilleure</h1>
         <div class="row bg-white" style="margin-top: 25px;">
             <div class="col-md-12">
                 <h2 class="" style="margin-top: 30px;margin-bottom: 30px;">
@@ -82,7 +74,7 @@
                 <p>{{ __('accueil.description2') }}</p>
             </div>
             <div class="col-md-12">
-                <a href="contact.php">
+                <a href="/contact">
                     <img class="img-envoyer" src="img/icone-envoyer.png?<?php echo date('YmdHis'); ?>" style="width: 300px;" />
                 </a>
             </div>

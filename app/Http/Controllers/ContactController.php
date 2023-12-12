@@ -13,7 +13,7 @@ class ContactController extends Controller
 {
     public function SiteIndex()
     {
-        return view('site.contact', ['evenement' => Evenement::select('title')->Where('date','>',now()->endOfDay())->get()]);
+        return view('site.contact', ['evenement' => Evenement::Where('date', '>', now()->endOfDay())->get()]);
     }
     public function index()
     {
@@ -40,7 +40,7 @@ class ContactController extends Controller
 
         try {
             $mailer = new mailer($details);
-            Mail::to('a.ezzyraouy@directinvest.ma')->send($mailer);
+            Mail::to('elghanemysaad@gmail.com')->send($mailer);
             $input = $request->all();
             $mail = new Contact();
             $mail->create($input);

@@ -11,10 +11,10 @@ class Evenement extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        'slug', 'title', 'description', 'lieu', 'image', 'affiche', 'videos', 'date'
+        'slug_fr', 'title_fr', 'description_fr', 'lieu_fr', 'slug_ar', 'title_ar', 'description_ar', 'lieu_ar', 'image', 'affiche', 'videos', 'date'
     ];
     public function media()
     {
-        return $this->hasMany(media::class, 'evenement_id');
+        return $this->hasMany(Media::class, 'evenement_id');
     }
 }

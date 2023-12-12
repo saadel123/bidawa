@@ -49,7 +49,7 @@
                                         <span class="text-white" style="font-size: 14px;">&nbsp;</span>
                                         <select name="choix" class="form-control form-rounded color-secondary select-contact" required>
                                             @foreach ($evenement as $item)
-                                            <option>{{ $item->title }}</option>
+                                            <option>{'title_'.app()->getLocale()} }}</option>
                                             @endforeach
                                             <option>{{ __('contact.select.option1') }}</option>
                                             <option>{{ __('contact.select.option2') }}</option>

@@ -13,3 +13,8 @@
     <label for="image" class="form-label">Image</label>
     <input type="file" name="image" class="form-control" id="image" value="{{ old('image', $presse->image ?? '') }}">
 </div>
+    @if (isset($presse))
+    <div>
+        <img src="{{ asset('storage/' . $presse->image ?? '') }}" style="margin-top:40px;max-height:150px" alt="">
+    </div>
+    @endif
